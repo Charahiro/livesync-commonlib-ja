@@ -85,6 +85,7 @@ export const _allMessages = {
     "Active Remote Configuration": {
         def: "Active Remote Configuration",
         fr: "Configuration distante active",
+        ja: "アクティブなリモート構成",
         ru: "Активная удалённая конфигурация",
         zh: "生效中的远程配置",
     },
@@ -100,12 +101,14 @@ export const _allMessages = {
     Analyse: {
         def: "Analyse",
         fr: "Analyser",
+        ja: "分析",
         ru: "Анализировать",
         zh: "立即分析",
     },
     "Analyse database usage": {
         def: "Analyse database usage",
         fr: "Analyser l'utilisation de la base de données",
+        ja: "データベース使用量を分析",
         ru: "Анализ использования базы данных",
         zh: "分析数据库使用情况",
     },
@@ -113,6 +116,7 @@ export const _allMessages = {
         {
             def: "Analyse database usage and generate a TSV report for diagnosis yourself. You can paste the generated report with any spreadsheet you like.",
             fr: "Analyser l'utilisation de la base de données et générer un rapport TSV pour un diagnostic personnel. Vous pouvez coller le rapport généré dans le tableur de votre choix.",
+            ja: "データベース使用量を分析し、自己診断用のTSVレポートを生成します。生成したレポートは任意のスプレッドシートに貼り付けられます。",
             ru: "Analyse database usage and generate a TSV report for diagnosis yourself. You can paste the generated report with any spreadsheet you like.",
             zh: "分析数据库使用情况并生成 TSV 报告以供您自行诊断。您可以将生成的报告粘贴到您喜欢的任何电子表格中。",
         },
@@ -201,6 +205,7 @@ export const _allMessages = {
     Check: {
         def: "Check",
         fr: "Vérifier",
+        ja: "確認",
         ru: "Проверить",
         zh: "立即检查",
     },
@@ -233,6 +238,7 @@ export const _allMessages = {
     "Copy Report to clipboard": {
         def: "Copy Report to clipboard",
         fr: "Copier le rapport dans le presse-papiers",
+        ja: "レポートをクリップボードにコピー",
         ru: "Копировать отчёт в буфер обмена",
         zh: "将报告复制到剪贴板",
     },
@@ -741,6 +747,7 @@ export const _allMessages = {
         {
             def: "If enabled, the ⛔ icon will be shown inside the status instead of the file warnings banner. No details will be shown.",
             fr: "Si activée, l'icône ⛔ s'affichera dans le statut à la place de la bannière d'avertissements de fichiers. Aucun détail ne sera affiché.",
+            ja: "有効にすると、ファイル警告バナーの代わりにステータス内へ ⛔ アイコンを表示します。詳細は表示されません。",
             ru: "Если включено, значок будет показан внутри статуса.",
             zh: "如果启用，状态栏内将显示 ⛔ 图标，而非文件警告横幅，不会显示任何详细信息。",
         },
@@ -1353,6 +1360,7 @@ export const _allMessages = {
     "Minimum interval for syncing": {
         def: "Minimum interval for syncing",
         fr: "Intervalle minimum pour la synchronisation",
+        ja: "同期の最小間隔",
         ru: "Минимальный интервал синхронизации",
         zh: "同步最小间隔",
     },
@@ -3836,6 +3844,7 @@ export const _allMessages = {
     "Prepare the 'report' to create an issue": {
         def: "Prepare the 'report' to create an issue",
         fr: "Préparer le « rapport » pour créer un ticket",
+        ja: "Issue作成用の「レポート」を準備",
         ru: "Подготовить «отчёт» для создания Issue",
         zh: "准备 '报告' 以创建问题单",
     },
@@ -3860,6 +3869,7 @@ export const _allMessages = {
     "Property Encryption": {
         def: "Property Encryption",
         fr: "Chiffrement des propriétés",
+        ja: "プロパティの暗号化",
         ru: "Шифрование свойств",
         zh: "属性加密",
     },
@@ -4084,36 +4094,42 @@ export const _allMessages = {
     "Rerun Onboarding Wizard": {
         def: "Rerun Onboarding Wizard",
         fr: "Relancer l'assistant d'intégration",
+        ja: "オンボーディングウィザードを再実行",
         ru: "Перезапустить мастер настройки",
         zh: "重新运行引导向导",
     },
     "Rerun the onboarding wizard to set up Self-hosted LiveSync again.": {
         def: "Rerun the onboarding wizard to set up Self-hosted LiveSync again.",
         fr: "Relancer l'assistant d'intégration pour reconfigurer Self-hosted LiveSync.",
+        ja: "Self-hosted LiveSync を再設定するため、オンボーディングウィザードを再実行します。",
         ru: "Перезапустить мастер настройки для повторной настройки Self-hosted LiveSync.",
         zh: "重新运行引导向导以再次设置 Self-hosted LiveSync。",
     },
     "Rerun Wizard": {
         def: "Rerun Wizard",
         fr: "Relancer l'assistant",
+        ja: "ウィザードを再実行",
         ru: "Перезапустить мастер",
         zh: "重新运行向导",
     },
     "Reset notification threshold and check the remote database usage": {
         def: "Reset notification threshold and check the remote database usage",
         fr: "Réinitialiser le seuil de notification et vérifier l'utilisation de la base distante",
+        ja: "通知しきい値をリセットし、リモートデータベース使用量を確認",
         ru: "Сбросить порог уведомления и проверить использование удалённой базы данных",
         zh: "重置通知阈值并检查远程数据库使用情况",
     },
     "Reset the remote storage size threshold and check the remote storage size again.": {
         def: "Reset the remote storage size threshold and check the remote storage size again.",
         fr: "Réinitialiser le seuil de taille du stockage distant et vérifier à nouveau la taille du stockage distant.",
+        ja: "リモートストレージサイズのしきい値をリセットし、リモートストレージサイズを再確認します。",
         ru: "Сбросить порог размера удалённого хранилища и проверить размер хранилища снова.",
         zh: "重置远程存储大小阈值并再次检查远程存储大小。",
     },
     "Run Doctor": {
         def: "Run Doctor",
         fr: "Lancer le Docteur",
+        ja: "Doctorを実行",
         ru: "Запустить диагностику",
         zh: "立即诊断",
     },
@@ -4490,6 +4506,7 @@ export const _allMessages = {
     "Show status icon instead of file warnings banner": {
         def: "Show status icon instead of file warnings banner",
         fr: "Afficher l'icône de statut au lieu de la bannière d'avertissements",
+        ja: "ファイル警告バナーの代わりにステータスアイコンを表示",
         ru: "Показывать иконку статуса вместо предупреждения о файлах",
         zh: "显示状态图标，而非文件警告横幅",
     },
@@ -4698,6 +4715,7 @@ export const _allMessages = {
     "The minimum interval for automatic synchronisation on event.": {
         def: "The minimum interval for automatic synchronisation on event.",
         fr: "L'intervalle minimum pour la synchronisation automatique sur événement.",
+        ja: "イベント発生時の自動同期の最小間隔です。",
         ru: "Минимальный интервал автоматической синхронизации по событию.",
         zh: "基于事件自动同步的最小间隔。",
     },
