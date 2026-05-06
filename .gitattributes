@@ -1,0 +1,4 @@
+.gitattributes text eol=lf
+src/common/messages/*.ts text eol=lf
+src/common/messagesJson/*.json text eol=lf
+src/common/messagesYAML/*.yaml text eol=lf
