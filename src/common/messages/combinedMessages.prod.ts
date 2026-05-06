@@ -5025,6 +5025,9 @@ export const _allMessages = {
     "Enable forcePathStyle": {
         ja: "forcePathStyleを有効化",
     },
+    "Enable per-file customization sync": {
+        ja: "ファイルごとのカスタマイズ同期を有効化",
+    },
     "Encryption passphrase. If changed, you should overwrite the server's database with the new (encrypted) files.": {
         ja: "暗号化パスフレーズ。変更した場合、新しい暗号化済みファイルでサーバーのデータベースを上書きする必要があります。",
     },
@@ -5037,6 +5040,10 @@ export const _allMessages = {
     "How to display network errors when the sync server is unreachable.": {
         ja: "同期サーバーに到達できない場合のネットワークエラーの表示方法です。",
     },
+    "If enabled, efficient per-file customization sync will be used. A minor migration is required when enabling this feature, and all devices must be updated to v0.23.18. Enabling this feature will result in losing compatibility with older versions.":
+        {
+            ja: "有効にすると、ファイルごとの効率的なカスタマイズ同期を使用します。この機能を有効化する際には小規模な移行が必要で、すべてのデバイスをv0.23.18以降に更新する必要があります。有効化すると古いバージョンとの互換性は失われます。",
+        },
     "If enabled, the file properties will be encrypted in the remote database. This is useful for protecting sensitive information in file paths, sizes, and IDs of its chunks. If you are using V1 E2EE, this only obfuscates the file path.":
         {
             ja: "有効にすると、リモートデータベース内のファイルプロパティが暗号化されます。ファイルパス、サイズ、チャンクIDに含まれる機密情報の保護に役立ちます。V1のエンドツーエンド暗号化を使用している場合は、ファイルパスの難読化のみ行われます。",
