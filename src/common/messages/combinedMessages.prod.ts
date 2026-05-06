@@ -316,7 +316,7 @@ export const _allMessages = {
     "dialog.yourLanguageAvailable.btnRevertToDefault": {
         def: "Keep %{lang-def}",
         fr: "Conserver %{lang-def}",
-        ja: "Keep %{lang-def}",
+        ja: "%{lang-def} のままにする",
         ko: "%{lang-def} 유지",
         ru: "Оставить lang-def",
         zh: "保持%{lang-def}",
@@ -871,7 +871,7 @@ export const _allMessages = {
     "K.Peer": {
         def: "Peer",
         fr: "Pair",
-        ja: "Peer",
+        ja: "ピア",
         ko: "피어",
         ru: "Устройство",
         zh: "Peer",
@@ -879,7 +879,7 @@ export const _allMessages = {
     "K.ScanCustomization": {
         def: "Scan customization",
         fr: "Analyser la personnalisation",
-        ja: "Scan customization",
+        ja: "カスタマイズをスキャン",
         ko: "사용자 설정 검색",
         ru: "Scan customization",
         zh: "扫描自定义",
@@ -887,7 +887,7 @@ export const _allMessages = {
     "K.short_p2p_sync": {
         def: "P2P Sync",
         fr: "Sync P2P",
-        ja: "P2P Sync (%{exp})",
+        ja: "P2P同期 (%{exp})",
         ko: "P2P 동기화 (%{exp})",
         ru: "P2P Синхр.",
         zh: "P2P同步(%{exp})",
@@ -895,7 +895,7 @@ export const _allMessages = {
     "K.title_p2p_sync": {
         def: "Peer-to-Peer Sync",
         fr: "Synchronisation pair-à-pair",
-        ja: "Peer-to-Peer Sync",
+        ja: "ピアツーピア同期",
         ko: "피어 투 피어(P2P) 동기화",
         ru: "Синхронизация между устройствами",
         zh: "Peer-to-Peer同步",
@@ -912,7 +912,7 @@ export const _allMessages = {
     lang_def: {
         def: "Default",
         fr: "Par défaut",
-        ja: "Default",
+        ja: "既定",
         ko: "Default",
         ru: "По умолчанию",
         zh: "Default",
@@ -4129,7 +4129,7 @@ export const _allMessages = {
     "Run Doctor": {
         def: "Run Doctor",
         fr: "Lancer le Docteur",
-        ja: "Doctorを実行",
+        ja: "診断ツールを実行",
         ru: "Запустить диагностику",
         zh: "立即诊断",
     },
