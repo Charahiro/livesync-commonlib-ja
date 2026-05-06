@@ -961,6 +961,7 @@ Copy Report to clipboard: レポートをクリップボードにコピー
 If enabled, the ⛔ icon will be shown inside the status instead of the file warnings banner. No details will be shown.:
   有効にすると、ファイル警告バナーの代わりにステータス内へ ⛔ アイコンを表示します。詳細は表示されません。
 Minimum interval for syncing: 同期の最小間隔
+Network warning style: ネットワーク警告の表示形式
 Prepare the 'report' to create an issue: Issue作成用の「レポート」を準備
 Property Encryption: プロパティの暗号化
 Rerun Onboarding Wizard: オンボーディングウィザードを再実行
@@ -971,4 +972,5 @@ Reset the remote storage size threshold and check the remote storage size again.
   リモートストレージサイズのしきい値をリセットし、リモートストレージサイズを再確認します。
 Run Doctor: Doctorを実行
 Show status icon instead of file warnings banner: ファイル警告バナーの代わりにステータスアイコンを表示
+How to display network errors when the sync server is unreachable.: 同期サーバーに到達できない場合のネットワークエラーの表示方法です。
 The minimum interval for automatic synchronisation on event.: イベント発生時の自動同期の最小間隔です。

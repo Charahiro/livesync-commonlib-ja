@@ -5010,6 +5010,12 @@ export const _allMessages = {
     "Compute revisions for chunks (Previous behaviour)": {
         es: "Calcular revisiones para chunks (comportamiento anterior)",
     },
+    "How to display network errors when the sync server is unreachable.": {
+        ja: "同期サーバーに到達できない場合のネットワークエラーの表示方法です。",
+    },
+    "Network warning style": {
+        ja: "ネットワーク警告の表示形式",
+    },
     "(Not recommended) If set, credentials will be stored in the file": {
         ru: "(Не рекомендуется) Если установлено, учётные данные будут сохранены в файле",
     },
