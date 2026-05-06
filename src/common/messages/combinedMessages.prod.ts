@@ -5016,6 +5016,9 @@ export const _allMessages = {
     "Application ID": {
         ja: "アプリケーションID",
     },
+    "Chunk Splitter": {
+        ja: "チャンク分割方式",
+    },
     "Custom Headers": {
         ja: "カスタムヘッダー",
     },
@@ -5051,6 +5054,10 @@ export const _allMessages = {
     "If enabled, the forcePathStyle option will be used for bucket operations.": {
         ja: "有効にすると、バケット操作でforcePathStyleオプションを使用します。",
     },
+    "If enabled, the plugin will not attempt to connect to the remote database even if the chunk was not found locally.":
+        {
+            ja: "有効にすると、チャンクがローカルに見つからない場合でも、リモートデータベースへの接続を試みません。",
+        },
     "JWT Algorithm": {
         ja: "JWTアルゴリズム",
     },
@@ -5063,6 +5070,10 @@ export const _allMessages = {
     "Network warning style": {
         ja: "ネットワーク警告の表示形式",
     },
+    "Now we can choose how to split the chunks; V3 is the most efficient. If you have troubled, please make this Default or Legacy.":
+        {
+            ja: "チャンクの分割方式を選択できます。V3が最も効率的です。問題がある場合は Default または Legacy にしてください。",
+        },
     "Please use V2, V1 is deprecated and will be removed in the future, It was not a very appropriate algorithm. Only for compatibility V1 is kept.":
         {
             ja: "V2を使用してください。V1は非推奨で、将来削除されます。適切なアルゴリズムではなかったため、互換性のためだけに残されています。",
@@ -5110,6 +5121,9 @@ export const _allMessages = {
     },
     "Use JWT instead of Basic Authentication": {
         ja: "Basic認証の代わりにJWTを使用",
+    },
+    "Use Only Local Chunks": {
+        ja: "ローカルチャンクのみ使用",
     },
     "(Not recommended) If set, credentials will be stored in the file": {
         ru: "(Не рекомендуется) Если установлено, учётные данные будут сохранены в файле",
