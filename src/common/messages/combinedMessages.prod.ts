@@ -5010,11 +5010,99 @@ export const _allMessages = {
     "Compute revisions for chunks (Previous behaviour)": {
         es: "Calcular revisiones para chunks (comportamiento anterior)",
     },
+    "Active Remote Type": {
+        ja: "有効なリモート種別",
+    },
+    "Application ID": {
+        ja: "アプリケーションID",
+    },
+    "Custom Headers": {
+        ja: "カスタムヘッダー",
+    },
+    "Effectively a directory. Should end with `/`. e.g., `vault-name/`.": {
+        ja: "実質的にはディレクトリです。`vault-name/` のように `/` で終える必要があります。",
+    },
+    "Enable forcePathStyle": {
+        ja: "forcePathStyleを有効化",
+    },
+    "Encryption passphrase. If changed, you should overwrite the server's database with the new (encrypted) files.": {
+        ja: "暗号化パスフレーズ。変更した場合、新しい暗号化済みファイルでサーバーのデータベースを上書きする必要があります。",
+    },
+    "End-to-End Encryption Algorithm": {
+        ja: "エンドツーエンド暗号化アルゴリズム",
+    },
+    "File prefix on the bucket": {
+        ja: "バケット内のファイル接頭辞",
+    },
     "How to display network errors when the sync server is unreachable.": {
         ja: "同期サーバーに到達できない場合のネットワークエラーの表示方法です。",
     },
+    "If enabled, the file properties will be encrypted in the remote database. This is useful for protecting sensitive information in file paths, sizes, and IDs of its chunks. If you are using V1 E2EE, this only obfuscates the file path.":
+        {
+            ja: "有効にすると、リモートデータベース内のファイルプロパティが暗号化されます。ファイルパス、サイズ、チャンクIDに含まれる機密情報の保護に役立ちます。V1のエンドツーエンド暗号化を使用している場合は、ファイルパスの難読化のみ行われます。",
+        },
+    "If enabled, the forcePathStyle option will be used for bucket operations.": {
+        ja: "有効にすると、バケット操作でforcePathStyleオプションを使用します。",
+    },
+    "JWT Algorithm": {
+        ja: "JWTアルゴリズム",
+    },
+    "Key ID": {
+        ja: "キーID",
+    },
+    "Keypair or pre-shared key": {
+        ja: "キーペアまたは事前共有鍵",
+    },
     "Network warning style": {
         ja: "ネットワーク警告の表示形式",
+    },
+    "Please use V2, V1 is deprecated and will be removed in the future, It was not a very appropriate algorithm. Only for compatibility V1 is kept.":
+        {
+            ja: "V2を使用してください。V1は非推奨で、将来削除されます。適切なアルゴリズムではなかったため、互換性のためだけに残されています。",
+        },
+    "Room ID": {
+        ja: "ルームID",
+    },
+    "Signalling Relays": {
+        ja: "シグナリングリレー",
+    },
+    "Subject (whoami)": {
+        ja: "サブジェクト（whoami）",
+    },
+    "The Application ID for P2P connection. This should be same among your devices. Default is 'self-hosted-livesync' and could not be modified from the UI.":
+        {
+            ja: "P2P接続用のアプリケーションIDです。すべてのデバイスで同じ値にする必要があります。デフォルトは「self-hosted-livesync」で、UIからは変更できません。",
+        },
+    "The credential/password for the TURN servers.": {
+        ja: "TURNサーバーの認証情報またはパスワードです。",
+    },
+    "The Nostr relay servers to establish connections for P2P connections. Multiple servers can be separated by commas.":
+        {
+            ja: "P2P接続を確立するためのNostrリレーサーバーです。複数のサーバーはカンマで区切れます。",
+        },
+    "The Passphrase for P2P connection. This should be same among your devices.": {
+        ja: "P2P接続用のパスフレーズです。すべてのデバイスで同じ値にする必要があります。",
+    },
+    "The Room ID for P2P connection. This should be same among your devices.": {
+        ja: "P2P接続用のルームIDです。すべてのデバイスで同じ値にする必要があります。",
+    },
+    "The TURN servers to use for P2P connections. Multiple servers can be separated by commas.": {
+        ja: "P2P接続で使用するTURNサーバーです。複数のサーバーはカンマで区切れます。",
+    },
+    "The username for the TURN servers.": {
+        ja: "TURNサーバーのユーザー名です。",
+    },
+    "TURN Credential": {
+        ja: "TURN認証情報",
+    },
+    "TURN Servers": {
+        ja: "TURNサーバー",
+    },
+    "TURN Username": {
+        ja: "TURNユーザー名",
+    },
+    "Use JWT instead of Basic Authentication": {
+        ja: "Basic認証の代わりにJWTを使用",
     },
     "(Not recommended) If set, credentials will be stored in the file": {
         ru: "(Не рекомендуется) Если установлено, учётные данные будут сохранены в файле",

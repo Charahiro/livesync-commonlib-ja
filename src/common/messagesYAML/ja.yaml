@@ -956,14 +956,32 @@ Analyse: 分析
 Analyse database usage: データベース使用量を分析
 Analyse database usage and generate a TSV report for diagnosis yourself. You can paste the generated report with any spreadsheet you like.:
   データベース使用量を分析し、自己診断用のTSVレポートを生成します。生成したレポートは任意のスプレッドシートに貼り付けられます。
+Active Remote Type: 有効なリモート種別
+Application ID: アプリケーションID
 Check: 確認
 Copy Report to clipboard: レポートをクリップボードにコピー
+Custom Headers: カスタムヘッダー
+Enable forcePathStyle: forcePathStyleを有効化
+Encryption passphrase. If changed, you should overwrite the server's database with the new (encrypted) files.:
+  暗号化パスフレーズ。変更した場合、新しい暗号化済みファイルでサーバーのデータベースを上書きする必要があります。
+End-to-End Encryption Algorithm: エンドツーエンド暗号化アルゴリズム
+Effectively a directory. Should end with `/`. e.g., `vault-name/`.: 実質的にはディレクトリです。`vault-name/` のように `/` で終える必要があります。
+File prefix on the bucket: バケット内のファイル接頭辞
+If enabled, the file properties will be encrypted in the remote database. This is useful for protecting sensitive information in file paths, sizes, and IDs of its chunks. If you are using V1 E2EE, this only obfuscates the file path.:
+  有効にすると、リモートデータベース内のファイルプロパティが暗号化されます。ファイルパス、サイズ、チャンクIDに含まれる機密情報の保護に役立ちます。V1のエンドツーエンド暗号化を使用している場合は、ファイルパスの難読化のみ行われます。
+If enabled, the forcePathStyle option will be used for bucket operations.: 有効にすると、バケット操作でforcePathStyleオプションを使用します。
 If enabled, the ⛔ icon will be shown inside the status instead of the file warnings banner. No details will be shown.:
   有効にすると、ファイル警告バナーの代わりにステータス内へ ⛔ アイコンを表示します。詳細は表示されません。
+JWT Algorithm: JWTアルゴリズム
+Key ID: キーID
+Keypair or pre-shared key: キーペアまたは事前共有鍵
 Minimum interval for syncing: 同期の最小間隔
 Network warning style: ネットワーク警告の表示形式
+Please use V2, V1 is deprecated and will be removed in the future, It was not a very appropriate algorithm. Only for compatibility V1 is kept.:
+  V2を使用してください。V1は非推奨で、将来削除されます。適切なアルゴリズムではなかったため、互換性のためだけに残されています。
 Prepare the 'report' to create an issue: Issue作成用の「レポート」を準備
 Property Encryption: プロパティの暗号化
+Room ID: ルームID
 Rerun Onboarding Wizard: オンボーディングウィザードを再実行
 Rerun the onboarding wizard to set up Self-hosted LiveSync again.: Self-hosted LiveSync を再設定するため、オンボーディングウィザードを再実行します。
 Rerun Wizard: ウィザードを再実行
@@ -972,5 +990,20 @@ Reset the remote storage size threshold and check the remote storage size again.
   リモートストレージサイズのしきい値をリセットし、リモートストレージサイズを再確認します。
 Run Doctor: Doctorを実行
 Show status icon instead of file warnings banner: ファイル警告バナーの代わりにステータスアイコンを表示
+Signalling Relays: シグナリングリレー
+Subject (whoami): サブジェクト（whoami）
+TURN Credential: TURN認証情報
+TURN Servers: TURNサーバー
+TURN Username: TURNユーザー名
+The Application ID for P2P connection. This should be same among your devices. Default is 'self-hosted-livesync' and could not be modified from the UI.:
+  P2P接続用のアプリケーションIDです。すべてのデバイスで同じ値にする必要があります。デフォルトは「self-hosted-livesync」で、UIからは変更できません。
+The Nostr relay servers to establish connections for P2P connections. Multiple servers can be separated by commas.:
+  P2P接続を確立するためのNostrリレーサーバーです。複数のサーバーはカンマで区切れます。
+The Passphrase for P2P connection. This should be same among your devices.: P2P接続用のパスフレーズです。すべてのデバイスで同じ値にする必要があります。
+The Room ID for P2P connection. This should be same among your devices.: P2P接続用のルームIDです。すべてのデバイスで同じ値にする必要があります。
+The TURN servers to use for P2P connections. Multiple servers can be separated by commas.: P2P接続で使用するTURNサーバーです。複数のサーバーはカンマで区切れます。
+The credential/password for the TURN servers.: TURNサーバーの認証情報またはパスワードです。
+The username for the TURN servers.: TURNサーバーのユーザー名です。
+Use JWT instead of Basic Authentication: Basic認証の代わりにJWTを使用
 How to display network errors when the sync server is unreachable.: 同期サーバーに到達できない場合のネットワークエラーの表示方法です。
 The minimum interval for automatic synchronisation on event.: イベント発生時の自動同期の最小間隔です。
