@@ -230,20 +230,22 @@ export class LiveSyncTrysteroReplicator extends LiveSyncAbstractReplicator {
             knownPeers = r.server?.knownAdvertisements ?? [];
         }
         const message =
-            "Rebuild from which peer?" + (settingPeerName ? "\n [*] indicates the peer you have selected before." : "");
+            "どのピアから再構築しますか？" + (settingPeerName ? "\n [*] は以前に選択したピアを示します。" : "");
         const confirm = this.env.services.UI.confirm;
         const markedPeerNames = knownPeers.map(
             (e) => e.name + "\u2001" + (e.name == settingPeerName ? "[*]" : "") + " (" + e.peerId + ")"
         );
-        const options = [...markedPeerNames, "Refresh List", "Cancel"];
+        const OPTION_REFRESH = "一覧を更新";
+        const OPTION_CANCEL = "キャンセル";
+        const options = [...markedPeerNames, OPTION_REFRESH, OPTION_CANCEL];
         const selected = await confirm.askSelectStringDialogue(message, options, {
-            title: "Select a peer to fetch from",
-            defaultAction: "Refresh List",
+            title: "取得元のピアを選択",
+            defaultAction: OPTION_REFRESH,
         });
-        if (!selected || selected == "Cancel") {
+        if (!selected || selected == OPTION_CANCEL) {
             return false;
         }
-        if (selected == "Refresh List") {
+        if (selected == OPTION_REFRESH) {
             await Promise.race([delay(1000), eventHub.waitFor(EVENT_ADVERTISEMENT_RECEIVED)]);
             return this.selectPeer(settingPeerName, r, logLevel);
         }

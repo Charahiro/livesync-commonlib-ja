@@ -55,7 +55,7 @@
 
     <div class="buttons">
         <button onclick={handleCommit}>OK</button>
-        <button onclick={handleCancel}>Cancel</button>
+        <button onclick={handleCancel}>キャンセル</button>
     </div>
 </popup>
 <div class="background" onclick={handleCancel} onkeydown={handleKey} role="none"></div>

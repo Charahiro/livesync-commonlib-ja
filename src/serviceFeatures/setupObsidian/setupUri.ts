@@ -10,8 +10,8 @@ import type { SetupFeatureHost } from "./types";
 
 export async function askEncryptingPassphrase(host: SetupFeatureHost): Promise<string | false> {
     return await host.services.UI.confirm.askString(
-        "Encrypt your settings",
-        "The passphrase to encrypt the setup URI",
+        "設定を暗号化",
+        "セットアップURIを暗号化するパスフレーズ",
         "",
         true
     );
@@ -26,7 +26,7 @@ export async function copySetupURI(host: SetupFeatureHost, log: LogFunction, str
         [...((stripExtra ? ["pluginSyncExtendedSetting"] : []) as (keyof ObsidianLiveSyncSettings)[])],
         true
     );
-    if (await host.services.UI.promptCopyToClipboard("Setup URI", encryptedURI)) {
+    if (await host.services.UI.promptCopyToClipboard("セットアップURI", encryptedURI)) {
         log("Setup URI copied to clipboard", LOG_LEVEL_NOTICE);
     }
 }
@@ -40,7 +40,7 @@ export async function copySetupURIFull(host: SetupFeatureHost, log: LogFunction)
         [],
         false
     );
-    if (await host.services.UI.promptCopyToClipboard("Setup URI", encryptedURI)) {
+    if (await host.services.UI.promptCopyToClipboard("セットアップURI", encryptedURI)) {
         log("Setup URI copied to clipboard", LOG_LEVEL_NOTICE);
     }
 }
@@ -50,19 +50,19 @@ export function useSetupURIFeature(host: NecessaryServices<"API" | "UI" | "setti
     host.services.appLifecycle.onLoaded.addHandler(() => {
         host.services.API.addCommand({
             id: "livesync-copysetupuri",
-            name: "Copy settings as a new setup URI",
+            name: "設定を新しいセットアップURIとしてコピー",
             callback: () => fireAndForget(copySetupURI(host, log)),
         });
 
         host.services.API.addCommand({
             id: "livesync-copysetupuri-short",
-            name: "Copy settings as a new setup URI (With customization sync)",
+            name: "設定を新しいセットアップURIとしてコピー (カスタマイズ同期付き)",
             callback: () => fireAndForget(copySetupURI(host, log, false)),
         });
 
         host.services.API.addCommand({
             id: "livesync-copysetupurifull",
-            name: "Copy settings as a new setup URI (Full)",
+            name: "設定を新しいセットアップURIとしてコピー (完全)",
             callback: () => fireAndForget(copySetupURIFull(host, log)),
         });
 

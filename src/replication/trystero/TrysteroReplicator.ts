@@ -292,7 +292,7 @@ export class TrysteroReplicator {
                         `requested-${peerId}`,
                         async () =>
                             await this.confirm.askYesNoDialog(
-                                "The remote peer requested to broadcast the changes. Do you want to allow it?",
+                                "リモートピアが変更のブロードキャストを要求しています。許可しますか？",
                                 { defaultOption: "No" }
                             )
                     )) === "yes"

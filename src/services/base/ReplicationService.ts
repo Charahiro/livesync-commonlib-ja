@@ -245,7 +245,7 @@ export abstract class ReplicationService<T extends ServiceContext = ServiceConte
             if (activeReplicator?.isChunkSendingSupported) {
                 if (
                     (await this.APIService.confirm.askYesNoDialog(
-                        "Do you want to send all chunks before replication?",
+                        "レプリケーション前にすべてのチャンクを送信しますか？",
                         {
                             defaultOption: "No",
                             timeout: 20,

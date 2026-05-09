@@ -262,24 +262,24 @@ export class TrysteroReplicatorP2PServer {
         const peerInfo = this._knownAdvertisements.get(peerId);
         if (!peerInfo) throw new Error("Unknown Peer");
         const peerName = peerInfo.name;
-        const message = `Are you sure to establish connection to ${peerName} (${peerId})?
-You can chose as follows:
-- Accept: Accept all connections from this peer.
-- Ignore: Reject all connections from this peer.
-- Accept Temporarily: Accept the connection for this session only.
-- Ignore Temporarily: Reject the connection for this session only.
+        const message = `${peerName} (${peerId}) との接続を確立してよろしいですか？
+次の選択肢があります:
+- 許可: このピアからのすべての接続を許可します。
+- 拒否: このピアからのすべての接続を拒否します。
+- 一時的に許可: このセッション中のみ接続を許可します。
+- 一時的に拒否: このセッション中のみ接続を拒否します。
 
->[!INFO] You can revoke your decision from the Peer-to-Peer Replicator Pane.`;
+>[!INFO] この決定はピアツーピアレプリケーターペインから取り消せます。`;
 
-        const OPTION_ACCEPT = "Accept";
-        const OPTION_IGNORE = "Ignore";
-        const OPTION_ACCEPT_TEMPORARILY = "Accept Temporarily";
-        const OPTION_IGNORE_TEMPORARILY = "Ignore Temporarily";
+        const OPTION_ACCEPT = "許可";
+        const OPTION_IGNORE = "拒否";
+        const OPTION_ACCEPT_TEMPORARILY = "一時的に許可";
+        const OPTION_IGNORE_TEMPORARILY = "一時的に拒否";
         const OPTIONS = [OPTION_ACCEPT, OPTION_IGNORE, OPTION_ACCEPT_TEMPORARILY, OPTION_IGNORE_TEMPORARILY];
         return this.confirm
             .askSelectStringDialogue(message, OPTIONS, {
-                title: "P2P Connection Request",
-                defaultAction: "Ignore Temporarily",
+                title: "P2P 接続リクエスト",
+                defaultAction: OPTION_IGNORE_TEMPORARILY,
                 timeout: 30,
             })
             .then((decision) => {

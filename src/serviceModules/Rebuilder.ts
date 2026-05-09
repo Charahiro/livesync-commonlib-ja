@@ -91,17 +91,17 @@ export class ServiceRebuilder extends ServiceModuleBase<ServiceRebuilderDependen
 
     async informOptionalFeatures() {
         await this.UI.showMarkdownDialog(
-            "All optional features are disabled",
-            `Customisation Sync and Hidden File Sync will all be disabled.
-Please enable them from the settings screen after setup is complete.`,
+            "すべての追加機能は無効です",
+            `カスタマイズ同期と隠しファイル同期はすべて無効になります。
+セットアップ完了後、必要に応じて設定画面から有効にしてください。`,
             ["OK"]
         );
     }
     async askUsingOptionalFeature(opt: { enableFetch?: boolean; enableOverwrite?: boolean }) {
         if (
             (await this.UI.confirm.askYesNoDialog(
-                "Do you want to enable extra features? If you are new to Self-hosted LiveSync, try the core feature first!",
-                { title: "Enable extra features", defaultOption: "No", timeout: 15 }
+                "追加機能を有効にしますか？Self-hosted LiveSync を初めて使う場合は、まず基本機能を試してください。",
+                { title: "追加機能を有効化", defaultOption: "No", timeout: 15 }
             )) == "yes"
         ) {
             await this.setting.suggestOptionalFeatures(opt);
@@ -259,18 +259,18 @@ Please enable them from the settings screen after setup is complete.`,
         if (settings.maxMTimeForReflectEvents > 0) {
             const date = new Date(settings.maxMTimeForReflectEvents);
 
-            const ask = `Your settings restrict file reflection times to no later than ${date}.
+            const ask = `現在の設定では、ファイル反映の対象時刻が ${date} 以前に制限されています。
 
-**This is a recovery configuration.**
+**これは復旧用の設定です。**
 
-This operation should only be performed on an empty vault.
-Are you sure you wish to proceed?`;
-            const PROCEED = "I understand, proceed";
-            const CANCEL = "Cancel operation";
-            const CLEARANDPROCEED = "Clear restriction and proceed";
+この操作は空の Vault でのみ実行してください。
+本当に続行しますか？`;
+            const PROCEED = "理解しました、続行します";
+            const CANCEL = "操作をキャンセル";
+            const CLEARANDPROCEED = "制限を解除して続行";
             const choices = [PROCEED, CLEARANDPROCEED, CANCEL] as const;
             const ret = await this.UI.confirm.askSelectStringDialogue(ask, choices, {
-                title: "Confirm restricted fetch",
+                title: "制限付き取得の確認",
                 defaultAction: CANCEL,
                 timeout: 0,
             });

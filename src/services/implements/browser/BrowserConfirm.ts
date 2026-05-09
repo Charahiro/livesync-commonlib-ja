@@ -66,8 +66,8 @@ export class BrowserConfirm<T extends ServiceContext> implements Confirm {
         this._context = context;
     }
     askYesNo(message: string): Promise<"yes" | "no"> {
-        return displayMessageBox(message, ["Yes", "No"] as const, "Confirm", (action) =>
-            action == "Yes" ? "yes" : "no"
+        return displayMessageBox(message, ["はい", "いいえ"] as const, "確認", (action) =>
+            action == "はい" ? "yes" : "no"
         );
     }
     askString(title: string, key: string, placeholder: string, isPassword?: boolean): Promise<string | false> {
@@ -77,19 +77,19 @@ export class BrowserConfirm<T extends ServiceContext> implements Confirm {
         message: string,
         opt: { title?: string; defaultOption?: "Yes" | "No"; timeout?: number }
     ): Promise<"yes" | "no"> {
-        return displayMessageBox(message, ["Yes", "No"] as const, opt.title ?? "Confirm", (action) =>
-            action == "Yes" ? "yes" : "no"
+        return displayMessageBox(message, ["はい", "いいえ"] as const, opt.title ?? "確認", (action) =>
+            action == "はい" ? "yes" : "no"
         );
     }
     askSelectString(message: string, items: string[]): Promise<string> {
-        return displayMessageBox(message, [...items] as const, "Confirm", (action) => action);
+        return displayMessageBox(message, [...items] as const, "確認", (action) => action);
     }
     askSelectStringDialogue<T extends readonly string[]>(
         message: string,
         buttons: T,
         opt: { title?: string; defaultAction: T[number]; timeout?: number }
     ): Promise<T[number] | false> {
-        return displayMessageBox(message, [...buttons] as const, opt.title ?? "Confirm", (action) => action);
+        return displayMessageBox(message, [...buttons] as const, opt.title ?? "確認", (action) => action);
     }
     askInPopup(key: string, dialogText: string, anchorCallback: (anchor: HTMLAnchorElement) => void): void {
         throw new Error("Method not implemented.");
@@ -101,6 +101,6 @@ export class BrowserConfirm<T extends ServiceContext> implements Confirm {
         defaultAction: (typeof buttons)[number],
         timeout?: number
     ): Promise<(typeof buttons)[number] | false> {
-        return displayMessageBox(contentMd, [...buttons] as const, title ?? "Confirm", (action) => action);
+        return displayMessageBox(contentMd, [...buttons] as const, title ?? "確認", (action) => action);
     }
 }

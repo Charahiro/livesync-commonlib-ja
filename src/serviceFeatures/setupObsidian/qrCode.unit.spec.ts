@@ -73,7 +73,7 @@ describe("setupObsidian/qrCode", () => {
 
         expect(result).toBe("<svg/>");
         expect($msg).toHaveBeenCalledWith("Setup.QRCode", { qr_image: "<svg/>" });
-        expect(confirmWithMessage).toHaveBeenCalledWith("Settings QR Code", "qr-message", ["OK"], "OK");
+        expect(confirmWithMessage).toHaveBeenCalledWith("設定QRコード", "qr-message", ["OK"], "OK");
     });
 
     it("useSetupQRCodeFeature should register onLoaded handler that wires command and event", async () => {
@@ -111,7 +111,7 @@ describe("setupObsidian/qrCode", () => {
         expect(addCommand).toHaveBeenCalledWith(
             expect.objectContaining({
                 id: "livesync-setting-qr",
-                name: "Show settings as a QR code",
+                name: "設定をQRコードとして表示",
             })
         );
         expect(onEventSpy).toHaveBeenCalledWith(EVENT_REQUEST_SHOW_SETUP_QR, expect.any(Function));
