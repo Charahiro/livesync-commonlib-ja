@@ -2095,6 +2095,7 @@ export const _allMessages = {
     },
     "liveSyncReplicator.mismatchedTweakDetected": {
         def: "Some mismatches have been detected in the configuration between devices. Running a manual replication will attempt to resolve this issue.",
+        ja: "デバイス間の設定に一部不一致が検出されました。手動レプリケーションを実行すると、この問題の解決を試みます。",
     },
     "liveSyncReplicator.oneShotSyncBegin": {
         def: "OneShot Sync begin... (${syncMode})",
@@ -7155,6 +7156,7 @@ export const _allMessages = {
     },
     "TweakMismatchResolve.Action.DisableAutoAcceptCompatible": {
         def: "Disable auto-accept",
+        ja: "自動受け入れを無効化",
     },
     "TweakMismatchResolve.Action.Dismiss": {
         def: "Dismiss",
@@ -7166,6 +7168,7 @@ export const _allMessages = {
     },
     "TweakMismatchResolve.Action.EnableAutoAcceptCompatible": {
         def: "Enable auto-accept",
+        ja: "自動受け入れを有効化",
     },
     "TweakMismatchResolve.Action.UseConfigured": {
         def: "Use configured settings",
@@ -7225,6 +7228,7 @@ export const _allMessages = {
     },
     "TweakMismatchResolve.Message.AutoAcceptCompatibleUndefined": {
         def: "\nIt appears that the settings differ for each device. You can now automatically apply compatible changes to these configurations.\nWould you like to enable this `auto-accept` setting?",
+        ja: "\nデバイスごとに設定が異なっているようです。互換性のある設定変更は自動的に適用できるようになりました。\nこの `auto-accept` 設定を有効にしますか？",
     },
     "TweakMismatchResolve.Message.Main": {
         def: "\nThe settings in the remote database are as follows. These values are configured by other devices, which are synchronised with this device at least once.\n\nIf you want to use these settings, please select %{TweakMismatchResolve.Action.UseConfigured}.\nIf you want to keep the settings of this device, please select %{TweakMismatchResolve.Action.Dismiss}.\n\n${table}\n\n>[!TIP]\n> If you want to synchronise all settings, please use `Sync settings via markdown` after applying minimal configuration with this feature.\n\n${additionalMessage}",
@@ -7244,9 +7248,11 @@ export const _allMessages = {
     },
     "TweakMismatchResolve.Message.mineUpdated": {
         def: "The device configuration have been adjusted.",
+        ja: "このデバイスの設定を調整しました。",
     },
     "TweakMismatchResolve.Message.remoteUpdated": {
         def: "The configuration stored remotely has been updated.",
+        ja: "リモートに保存されている設定を更新しました。",
     },
     "TweakMismatchResolve.Message.UseRemote.WarningRebuildRecommended": {
         def: "\n>[!NOTICE]\n> Some changes are compatible but may consume extra storage and transfer volumes. A rebuild is recommended. However, a rebuild may not be performed at present, but may be implemented in future maintenance.\n> ***Please ensure that you have time and are connected to a stable network to apply!***",
@@ -7306,6 +7312,7 @@ export const _allMessages = {
     },
     "TweakMismatchResolve.Title.AutoAcceptCompatible": {
         def: "Auto-Accept Available",
+        ja: "自動受け入れを利用できます",
     },
     "TweakMismatchResolve.Title.TweakResolving": {
         def: "Configuration Mismatch Detected",
@@ -8962,6 +8969,13 @@ export const _allMessages = {
     "Application ID": {
         ja: "アプリケーションID",
     },
+    "Auto-accept compatible tweak mismatches": {
+        ja: "互換性のあるTweak不一致を自動受け入れ",
+    },
+    "Automatically accepts mismatches that are compatible but potentially lossy by comparing tweak modification times.":
+        {
+            ja: "Tweakの更新時刻を比較し、互換性はあるものの損失が生じる可能性のある不一致を自動的に受け入れます。",
+        },
     "Chunk Splitter": {
         ja: "チャンク分割方式",
     },
@@ -9001,6 +9015,9 @@ export const _allMessages = {
         {
             ja: "有効にすると、チャンクがローカルに見つからない場合でも、リモートデータベースへの接続を試みません。",
         },
+    "Internal timestamp for resolving compatible tweak mismatches.": {
+        ja: "互換性のあるTweak不一致を解決するための内部タイムスタンプです。",
+    },
     "JWT Algorithm": {
         ja: "JWTアルゴリズム",
     },
@@ -9009,6 +9026,9 @@ export const _allMessages = {
     },
     "Keypair or pre-shared key": {
         ja: "キーペアまたは事前共有鍵",
+    },
+    "Last tweak modified timestamp": {
+        ja: "Tweakの最終更新タイムスタンプ",
     },
     "Now we can choose how to split the chunks; V3 is the most efficient. If you have troubled, please make this Default or Legacy.":
         {
