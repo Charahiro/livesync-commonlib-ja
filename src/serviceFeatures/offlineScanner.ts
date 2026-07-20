@@ -626,6 +626,7 @@ export async function synchroniseAllFilesBetweenDBandStorage(
         showingNotice ? LOG_LEVEL_NOTICE : LOG_LEVEL_INFO,
         "syncAll"
     );
+    saveFileStatus(host, true);
     return successCount === processedCount;
 }
 
@@ -672,15 +673,18 @@ async function _saveFileStatus(host: NecessaryServices<"keyValueDB", never>) {
 
 let saveFileStatusTimeout: number | null = null;
 // Schedule saving file status with debouncing to prevent excessive writes during rapid changes.
-function saveFileStatus(host: NecessaryServices<"keyValueDB", never>) {
+function saveFileStatus(host: NecessaryServices<"keyValueDB", never>, immediate = false) {
     if (saveFileStatusTimeout !== null) {
         compatGlobal.clearTimeout(saveFileStatusTimeout);
     }
-    saveFileStatusTimeout = compatGlobal.setTimeout(() => {
-        void _saveFileStatus(host).then(() => {
-            saveFileStatusTimeout = null;
-        });
-    }, 1000);
+    saveFileStatusTimeout = compatGlobal.setTimeout(
+        () => {
+            void _saveFileStatus(host).then(() => {
+                saveFileStatusTimeout = null;
+            });
+        },
+        immediate ? 0 : 1000
+    );
 }
 function updateFileMTimeInMap(host: NecessaryServices<"keyValueDB", never>, key: string, mtime: number) {
     fileMaps.set(key, mtime);
@@ -745,7 +749,6 @@ export async function performFullScan(
         log("Restoring storage state", LOG_LEVEL_VERBOSE);
         await host.serviceModules.storageAccess.restoreState();
     }
-    await loadFileStatus(host);
 
     log("Initialize and checking database files");
     log("Checking deleted files");
