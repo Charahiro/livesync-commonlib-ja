@@ -1,6 +1,6 @@
 import { type ActionSender, type Room, selfId, joinRoom } from "@trystero-p2p/nostr";
-import { LOG_LEVEL_INFO, LOG_LEVEL_NOTICE, type P2PSyncSetting } from "../../common/types";
-import { LOG_LEVEL_VERBOSE, Logger } from "../../common/logger";
+import { LOG_LEVEL_INFO, LOG_LEVEL_NOTICE, type P2PSyncSetting } from "@lib/common/types";
+import { LOG_LEVEL_VERBOSE, Logger } from "@lib/common/logger";
 import {
     DIRECTION_RESPONSE,
     type ReplicatorHostEnv,
@@ -12,13 +12,14 @@ import {
     DIRECTION_REQUEST,
     type Advertisement,
     type BindableObject,
+    type BindableFunction,
 } from "./types";
-import { StoredMapLike } from "../../dataobject/StoredMap";
+import { StoredMapLike } from "@lib/dataobject/StoredMap";
 import { TrysteroReplicatorP2PClient } from "./TrysteroReplicatorP2PClient";
-import { eventHub } from "../../hub/hub";
+import { eventHub } from "@lib/hub/hub";
 import { createHostingDB } from "./ProxiedDB";
 import { EVENT_PLATFORM_UNLOADED } from "@lib/events/coreEvents";
-import { $msg } from "../../common/i18n";
+import { $msg } from "@lib/common/i18n";
 import { shareRunningResult } from "octagonal-wheels/concurrency/lock_v2";
 import { Computed } from "octagonal-wheels/dataobject/Computed";
 import { RpcRoom, type JsonLike, type RpcWireMessage, type TransportAdapter } from "@lib/rpc";
@@ -27,6 +28,7 @@ import { toRpcMethodName } from "./rpcCompat";
 import { generateJoinRoomOptions } from "@lib/rpc/transports/trysteroUtils";
 import { subscribeConnectionStatus, subscribeFailureDiagnosis } from "@lib/rpc/transports/DiagRTCPeerConnections";
 import { type DiagRTCStats } from "@lib/rpc/transports/DiagRTCPeerConnections.types";
+import type { SimpleStore } from "@lib/common/utils";
 
 export type PeerInfo = Advertisement & {
     isAccepted: boolean | undefined;
@@ -81,9 +83,9 @@ export class TrysteroReplicatorP2PServer {
     _serverPeerId: string;
     _activeRoomId: string = "";
     ___send?: ActionSender<Payload>;
-    assignedFunctions = new Map<string, (...args: any[]) => any>();
+    assignedFunctions = new Map<string, BindableFunction>();
     clients: Map<string, TrysteroReplicatorP2PClient> = new Map();
-    _bindingObjects: BindableObject<any>[] = [];
+    _bindingObjects: BindableObject[] = [];
     _rpcRoom?: RpcRoom;
 
     protected _peerStatusEventCleanup: (() => void) | undefined = undefined;
@@ -174,8 +176,10 @@ export class TrysteroReplicatorP2PServer {
             void this.shutdown();
         });
         // SimpleStore has no type support now.
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        this.acceptedPeers = new StoredMapLike<boolean>(this._env.simpleStore, "p2p-device-decisions");
+        this.acceptedPeers = new StoredMapLike<boolean>(
+            this._env.simpleStore as SimpleStore<boolean>,
+            "p2p-device-decisions"
+        );
     }
     async makeDecision(decision: AcceptanceDecision) {
         if (decision.decision) {
@@ -489,7 +493,7 @@ export class TrysteroReplicatorP2PServer {
         void this.dispatchConnectionStatus();
     }
 
-    async startService(bindings: BindableObject<any>[] = []) {
+    async startService(bindings: BindableObject[] = []) {
         if (!this.isEnabled) {
             Logger($msg("P2P.NotEnabled"), LOG_LEVEL_NOTICE);
             return;
@@ -503,7 +507,7 @@ export class TrysteroReplicatorP2PServer {
         // this.startAdvertisementBroadcast();
     }
 
-    async start(bindings: BindableObject<any>[] = []) {
+    async start(bindings: BindableObject[] = []) {
         await this.shutdown();
         if (!this.settings.P2P_Enabled) {
             Logger($msg("P2P.NotEnabled"), LOG_LEVEL_NOTICE);
@@ -583,8 +587,10 @@ export class TrysteroReplicatorP2PServer {
             Logger(`Serving function: [FAILED] ${data.type} sending back the failure information`, LOG_LEVEL_VERBOSE);
             Logger(e instanceof Error ? e.message : e, LOG_LEVEL_VERBOSE);
 
+            // e is not guaranteed to be serializable, so we need to convert it to a string or a simple object.
+            // TODO: Check it later.
             await this.__send(
-                { type: data.type, seq: data.seq, direction: DIRECTION_RESPONSE, data: undefined, error: e },
+                { type: data.type, seq: data.seq, direction: DIRECTION_RESPONSE, data: undefined, error: e as any },
                 peerId
             );
         }

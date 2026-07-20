@@ -1,5 +1,5 @@
-import type { Confirm } from "../interfaces/Confirm";
-import { isCloudantURI } from "../pouchdb/utils_couchdb";
+import type { Confirm } from "@lib/interfaces/Confirm";
+import { isCloudantURI } from "@lib/pouchdb/utils_couchdb";
 import { $msg } from "./i18n";
 import { LOG_LEVEL_INFO, LOG_LEVEL_NOTICE, LOG_LEVEL_VERBOSE, Logger } from "./logger";
 import { getConfName, type AllSettingItemKey } from "./settingConstants";
@@ -308,7 +308,10 @@ export async function performDoctorConsultation(
             };
         }
         if (msg != OPT_YES) return getResult();
-        const issueItems = Object.entries(r.rules) as [keyof DoctorCheckSettings, RuleForType<any>][];
+        const issueItems = Object.entries(r.rules) as [
+            keyof DoctorCheckSettings,
+            RuleForType<keyof DoctorCheckSettings>,
+        ][];
         Logger(`${issueItems.length} Issue(s) found `, LOG_LEVEL_VERBOSE);
         let idx = 0;
         const applySettings = {} as Partial<DoctorCheckSettings>;

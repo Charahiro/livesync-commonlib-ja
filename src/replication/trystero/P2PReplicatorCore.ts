@@ -1,19 +1,19 @@
 /**
  * Obsoleted: separated into non-UI things and UI things.
  */
-import { AutoAccepting, REMOTE_P2P } from "../../common/types";
+import { AutoAccepting, REMOTE_P2P, type ObsidianLiveSyncSettings } from "@lib/common/types";
 import { reactiveSource } from "octagonal-wheels/dataobject/reactive";
-import { EVENT_REQUEST_OPEN_P2P } from "../../events/coreEvents";
-import { eventHub } from "../../hub/hub";
+import { EVENT_REQUEST_OPEN_P2P } from "@lib/events/coreEvents";
+import { eventHub } from "@lib/hub/hub";
 import { LiveSyncTrysteroReplicator, type LiveSyncTrysteroReplicatorEnv } from "./LiveSyncTrysteroReplicator";
 import type { NecessaryServices } from "@lib/interfaces/ServiceModule";
-import { Logger, LOG_LEVEL_NOTICE, LOG_LEVEL_VERBOSE } from "../../common/logger";
+import { Logger, LOG_LEVEL_NOTICE, LOG_LEVEL_VERBOSE } from "@lib/common/logger";
 import { P2PLogCollector } from "./P2PLogCollector";
 import { addP2PEventHandlers } from "./addP2PEventHandlers";
 import type { P2PPaneParams } from "./UseP2PReplicatorResult";
 import { compatGlobal } from "@lib/common/coreEnvFunctions";
 
-export type P2PViewFactory = (leaf: any) => any;
+export type P2PViewFactory = (leaf: unknown) => unknown;
 
 /**
  * ServiceFeature: P2P Replicator lifecycle management.
@@ -35,12 +35,13 @@ export function useP2PReplicator(
         | "replication"
         | "config"
         | "UI"
-        | "replicator",
+        | "replicator"
+        | "remote",
         never
     >,
     viewTypeAndFactory?: [viewType: string, factory: P2PViewFactory]
 ): P2PPaneParams {
-    const env: LiveSyncTrysteroReplicatorEnv = { services: host.services as any };
+    const env: LiveSyncTrysteroReplicatorEnv = { services: host.services };
     let replicator = new LiveSyncTrysteroReplicator(env);
     const activeReplicator = {
         get instance() {
@@ -95,23 +96,25 @@ export function useP2PReplicator(
     });
 
     // New replicator factory
-    host.services.replicator.getNewReplicator.addHandler(async (settingOverride: Partial<any> = {}) => {
-        const settings = { ...host.services.setting.currentSettings(), ...settingOverride };
-        if (settings.remoteType == REMOTE_P2P) {
-            // Returning replicator instance directly here
-            // return Promise.resolve(replicator);
-            try {
-                await replicator.close();
-            } catch (e) {
-                Logger(`Error closing existing p2p replicator`);
-                Logger(e, LOG_LEVEL_VERBOSE);
+    host.services.replicator.getNewReplicator.addHandler(
+        async (settingOverride: Partial<ObsidianLiveSyncSettings> = {}) => {
+            const settings = { ...host.services.setting.currentSettings(), ...settingOverride };
+            if (settings.remoteType == REMOTE_P2P) {
+                // Returning replicator instance directly here
+                // return Promise.resolve(replicator);
+                try {
+                    await replicator.close();
+                } catch (e) {
+                    Logger(`Error closing existing p2p replicator`);
+                    Logger(e, LOG_LEVEL_VERBOSE);
+                }
+                const newReplicator = new LiveSyncTrysteroReplicator({ services: host.services });
+                replicator = newReplicator; // Update the replicator reference for lifecycle handlers
+                return Promise.resolve(replicator);
             }
-            const newReplicator = new LiveSyncTrysteroReplicator({ services: host.services as any });
-            replicator = newReplicator; // Update the replicator reference for lifecycle handlers
-            return Promise.resolve(replicator);
+            return undefined!;
         }
-        return undefined!;
-    });
+    );
 
     // Register view, commands and ribbon if a view factory is provided
     if (viewTypeAndFactory) {

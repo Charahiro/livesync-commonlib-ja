@@ -23,7 +23,7 @@ import type { NecessaryServices } from "@lib/interfaces/ServiceModule";
 import { eventHub } from "@lib/hub/hub";
 import { BASE_IS_NEW, EVEN, TARGET_IS_NEW } from "@lib/common/models/shared.const.symbols";
 import { UnresolvedErrorManager } from "@lib/services/base/UnresolvedErrorManager";
-import { compatGlobal } from "../common/coreEnvFunctions";
+import { compatGlobal } from "@lib/common/coreEnvFunctions";
 
 /**
  * Collect deleted files that have expired according to retention policy.
@@ -211,15 +211,11 @@ export async function collectFilesOnStorage(
         }
     }
 
-    const storageFileNameMap = Object.fromEntries(
-        _filesStorage.map((e) => [e.path, e] as [FilePathWithPrefix, UXFileInfoStub])
-    );
+    const storageFileNameMap = Object.fromEntries(_filesStorage.map((e) => [e.path, e]));
 
     const storageFileNames = Object.keys(storageFileNameMap) as FilePathWithPrefix[];
 
-    const storageFileNameCapsPair = storageFileNames.map(
-        (e) => [e, convertCase(settings, e)] as [FilePathWithPrefix, FilePathWithPrefixLC]
-    );
+    const storageFileNameCapsPair = storageFileNames.map((e) => [e, convertCase(settings, e)]);
 
     const storageFileNameCI2CS = Object.fromEntries(storageFileNameCapsPair.map((e) => [e[1], e[0]])) as Record<
         FilePathWithPrefixLC,
@@ -257,13 +253,9 @@ export async function collectDatabaseFiles(
         }
     }
 
-    const databaseFileNameMap = Object.fromEntries(
-        _DBEntries.map((e) => [getPathFromEntry(host, e), e] as [FilePathWithPrefix, MetaEntry])
-    );
+    const databaseFileNameMap = Object.fromEntries(_DBEntries.map((e) => [getPathFromEntry(host, e), e]));
     const databaseFileNames = Object.keys(databaseFileNameMap) as FilePathWithPrefix[];
-    const databaseFileNameCapsPair = databaseFileNames.map(
-        (e) => [e, convertCase(settings, e)] as [FilePathWithPrefix, FilePathWithPrefixLC]
-    );
+    const databaseFileNameCapsPair = databaseFileNames.map((e) => [e, convertCase(settings, e)]);
     const databaseFileNameCI2CS = Object.fromEntries(databaseFileNameCapsPair.map((e) => [e[1], e[0]])) as Record<
         FilePathWithPrefix,
         FilePathWithPrefixLC

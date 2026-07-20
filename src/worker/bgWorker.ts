@@ -1,7 +1,7 @@
 // Foreground part of Worker-off-loaded functions
 
-import { promiseWithResolver } from "octagonal-wheels/promises.js";
-import { eventHub } from "../hub/hub.ts";
+import { promiseWithResolvers } from "octagonal-wheels/promises.js";
+import { eventHub } from "@lib/hub/hub.ts";
 //@ts-ignore
 import WorkerX from "./bg.worker.ts?worker&inline";
 import { EVENT_PLATFORM_UNLOADED } from "@lib/events/coreEvents";
@@ -17,6 +17,7 @@ import type {
     SplitArguments,
     SplitProcessItem,
 } from "./universalTypes.ts";
+import { compatGlobal } from "@lib/common/coreEnvFunctions.ts";
 
 export type WorkerInstance = {
     worker: Worker;
@@ -97,7 +98,7 @@ export function removeTask(key: number): void {
 }
 
 function initialiseWorkers() {
-    const maxConcurrency = ~~((navigator.hardwareConcurrency || 8) / 2);
+    const maxConcurrency = ~~((compatGlobal.navigator.hardwareConcurrency || 8) / 2);
     return Array.from(
         { length: maxConcurrency },
         () =>
@@ -187,7 +188,7 @@ export function startWorker(data: Omit<SplitArguments, "key">): SplitProcessItem
 export function startWorker(data: Omit<EncryptArguments | SplitArguments | EncryptHKDFArguments, "key">): ProcessItem {
     const _key = key++;
     const inst = nextWorker();
-    const promise = promiseWithResolver<any>();
+    const promise = promiseWithResolvers<string>();
     const item: ProcessItem = {
         key: _key,
         task: promise,

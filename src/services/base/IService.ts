@@ -19,14 +19,14 @@ import type {
     TweakValues,
     UXFileInfo,
     UXFileInfoStub,
-} from "../../common/types";
+} from "@lib/common/types";
 
-import type { LiveSyncLocalDB } from "../../pouchdb/LiveSyncLocalDB";
-import type { LiveSyncAbstractReplicator } from "../../replication/LiveSyncAbstractReplicator";
+import type { LiveSyncLocalDB } from "@lib/pouchdb/LiveSyncLocalDB";
+import type { LiveSyncAbstractReplicator } from "@lib/replication/LiveSyncAbstractReplicator";
 import type { SimpleStore } from "octagonal-wheels/databases/SimpleStoreBase";
-import type { Confirm } from "../../interfaces/Confirm";
+import type { Confirm } from "@lib/interfaces/Confirm";
 import type { ReactiveSource } from "octagonal-wheels/dataobject/reactive";
-import type { ReplicationStatics } from "../../common/models/shared.definition";
+import type { ReplicationStatics } from "@lib/common/models/shared.definition";
 import type { ReplicatorService } from "./ReplicatorService";
 import type { DatabaseEventService } from "./DatabaseEventService";
 import type { BASE_IS_NEW, EVEN, TARGET_IS_NEW } from "@lib/common/models/shared.const.symbols";
@@ -41,9 +41,12 @@ export interface ICommandCompat {
     id: string;
     name: string;
     icon?: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- For interoperability with Obsidian's and cross-platform command system.
     callback?: () => any;
     checkCallback?: (checking: boolean) => boolean | void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- For interoperability with Obsidian's and cross-platform command system.
     editorCallback?: (editor: any, ctx: any) => any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- For interoperability with Obsidian's and cross-platform command system.
     editorCheckCallback?: (checking: any, editor: any, ctx: any) => boolean | void;
 }
 
@@ -51,7 +54,7 @@ export interface IAPIService {
     getCustomFetchHandler(): FetchHttpHandler;
     addStatusBarItem(): HTMLElement | undefined;
 
-    addLog(message: any, level: LOG_LEVEL, key?: string): void;
+    addLog(message: unknown, level: LOG_LEVEL, key?: string): void;
 
     isMobile(): boolean;
 
@@ -68,9 +71,9 @@ export interface IAPIService {
 
     getPluginVersion(): string;
     addCommand<TCommand extends ICommandCompat>(command: TCommand): TCommand;
-    registerWindow(type: string, factory: (leaf: any) => any): void;
-    addRibbonIcon(icon: string, title: string, callback: (evt: MouseEvent) => any): HTMLElement;
-    registerProtocolHandler(action: string, handler: (params: Record<string, string>) => any): void;
+    registerWindow<T>(type: string, factory: (leaf: T) => unknown): void;
+    addRibbonIcon(icon: string, title: string, callback: (evt: MouseEvent) => unknown): HTMLElement;
+    registerProtocolHandler(action: string, handler: (params: Record<string, string>) => unknown): void;
     confirm: Confirm;
     responseCount: ReactiveSource<number>;
     requestCount: ReactiveSource<number>;
@@ -139,7 +142,7 @@ export interface IDatabaseEventService {
 }
 export interface IKeyValueDBService {
     openSimpleStore<T>(kind: string): SimpleStore<T>;
-    simpleStore: SimpleStore<any>;
+    simpleStore: SimpleStore<unknown>;
 }
 export interface IFileProcessingService {
     processFileEvent(item: FileEventItem): Promise<boolean>;

@@ -9,7 +9,7 @@ import {
     MISSING_OR_ERROR,
     NOT_CONFLICTED,
     type DIFF_CHECK_RESULT_AUTO,
-} from "../common/types.ts";
+} from "@lib/common/types.ts";
 import {
     getDocData,
     tryParseJSON,
@@ -18,10 +18,10 @@ import {
     applyPatch,
     isSensibleMargeApplicable,
     isObjectMargeApplicable,
-} from "../common/utils.ts";
-import type { EntryManager } from "../managers/EntryManager/EntryManager.ts";
-import { isErrorOfMissingDoc } from "../pouchdb/utils_couchdb.ts";
-import type { IPathService } from "../services/base/IService.ts";
+} from "@lib/common/utils.ts";
+import type { EntryManager } from "@lib/managers/EntryManager/EntryManager.ts";
+import { isErrorOfMissingDoc } from "@lib/pouchdb/utils_couchdb.ts";
+import type { IPathService } from "@lib/services/base/IService.ts";
 
 type AutoMergeOutcomeOK = {
     ok: DIFF_CHECK_RESULT_AUTO;
@@ -280,9 +280,9 @@ export class ConflictManager {
                 Logger(`Either is deleted`, LOG_LEVEL_VERBOSE);
                 return false;
             }
-            const baseObj = { data: tryParseJSON(baseLeaf.data, {}) } as Record<string | number | symbol, any>;
-            const leftObj = { data: tryParseJSON(leftLeaf.data, {}) } as Record<string | number | symbol, any>;
-            const rightObj = { data: tryParseJSON(rightLeaf.data, {}) } as Record<string | number | symbol, any>;
+            const baseObj = { data: tryParseJSON(baseLeaf.data, {}) } as Record<string | number | symbol, unknown>;
+            const leftObj = { data: tryParseJSON(leftLeaf.data, {}) } as Record<string | number | symbol, unknown>;
+            const rightObj = { data: tryParseJSON(rightLeaf.data, {}) } as Record<string | number | symbol, unknown>;
 
             const diffLeft = generatePatchObj(baseObj, leftObj);
             const diffRight = generatePatchObj(baseObj, rightObj);

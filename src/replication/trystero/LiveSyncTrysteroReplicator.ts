@@ -1,5 +1,5 @@
-import { eventHub } from "../../hub/hub";
-import { Logger } from "../../common/logger";
+import { eventHub } from "@lib/hub/hub";
+import { Logger } from "@lib/common/logger";
 import {
     type RemoteDBSettings,
     type EntryLeaf,
@@ -10,12 +10,12 @@ import {
     type LOG_LEVEL,
     type NodeData,
     SETTING_KEY_P2P_DEVICE_NAME,
-} from "../../common/types";
+} from "@lib/common/types";
 import {
     LiveSyncAbstractReplicator,
     type LiveSyncReplicatorEnv,
     type RemoteDBStatus,
-} from "../LiveSyncAbstractReplicator";
+} from "@lib/replication/LiveSyncAbstractReplicator";
 import { TrysteroReplicator } from "./TrysteroReplicator";
 import {
     EVENT_ADVERTISEMENT_RECEIVED,
@@ -24,13 +24,13 @@ import {
     type AcceptanceDecision,
     type RevokeAcceptanceDecision,
 } from "./TrysteroReplicatorP2PServer";
-import { $msg } from "../../common/i18n";
+import { $msg } from "@lib/common/i18n";
 import { delay } from "octagonal-wheels/promises";
-import type { IServiceHub } from "../../services/base/IService";
+
 import type { Advertisement } from "./types";
 
 export interface LiveSyncTrysteroReplicatorEnv extends LiveSyncReplicatorEnv {
-    services: IServiceHub;
+    // services: IServiceHub;
     /**
      * Injected by the host platform (e.g. Obsidian) to show a UI for peer selection.
      * When not set, openReplication falls back to replicateFromCommand (CLI-safe).

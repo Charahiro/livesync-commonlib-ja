@@ -1,5 +1,5 @@
-import { _fetch, compatGlobal } from "../common/coreEnvFunctions.ts";
-import { writeString } from "../string_and_binary/convert.ts";
+import { _fetch, compatGlobal } from "@lib/common/coreEnvFunctions.ts";
+import { writeString } from "@lib/string_and_binary/convert.ts";
 
 export const isValidRemoteCouchDBURI = (uri: string): boolean => {
     if (uri.startsWith("https://")) return true;
@@ -12,8 +12,8 @@ export function isCloudantURI(uri: string): boolean {
     return false;
 }
 
-export function isErrorOfMissingDoc(ex: any) {
-    return (ex && ex?.status) == 404;
+export function isErrorOfMissingDoc(ex: unknown): boolean {
+    return (ex && (ex as { status?: number }).status) == 404;
 }
 
 export const _requestToCouchDBFetch = async (
@@ -21,7 +21,7 @@ export const _requestToCouchDBFetch = async (
     username: string,
     password: string,
     path?: string,
-    body?: any,
+    body?: unknown,
     method?: string
 ) => {
     const utf8str = String.fromCharCode.apply(null, [...writeString(`${username}:${password}`)]);

@@ -2,9 +2,10 @@ function isTextBlob(blob: Blob) {
     return blob.type === "text/plain";
 }
 
-import { LOG_LEVEL_VERBOSE, Logger } from "../common/logger.ts";
+import { LOG_LEVEL_VERBOSE, Logger } from "@lib/common/logger.ts";
 import { arrayBufferToBase64Single, readString } from "./convert.ts";
-import { wrapByDefault } from "../common/utils.ts";
+import { wrapByDefault } from "@lib/common/utils.ts";
+import { compatGlobal } from "@lib/common/coreEnvFunctions.ts";
 
 /// Chunk utilities
 function* pickPiece(leftData: string[], minimumChunkSize: number): Generator<string> {
@@ -76,7 +77,7 @@ const segmenter =
         ? wrapByDefault(
               // @ts-ignore We have checked Intl existence above.
               // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
-              () => new Intl.Segmenter(navigator.language, { granularity: "sentence" }),
+              () => new Intl.Segmenter(compatGlobal.navigator.language, { granularity: "sentence" }),
               (err) => {
                   Logger(`Failed to create Intl.Segmenter: ${err.message}`, LOG_LEVEL_VERBOSE);
                   return undefined;
@@ -324,14 +325,14 @@ function* stringGenerator(sources: string[]) {
         yield str;
     }
 }
-export async function collectGenAll(strGen: AsyncGenerator<string, any, unknown> | Generator<string>) {
+export async function collectGenAll(strGen: AsyncGenerator<string, unknown, unknown> | Generator<string>) {
     const ret = [] as string[];
     for await (const str of strGen) {
         ret.push(str);
     }
     return ret;
 }
-export async function concatGeneratedAll(strGen: AsyncGenerator<string, any, unknown> | Generator<string>) {
+export async function concatGeneratedAll(strGen: AsyncGenerator<string, unknown, unknown> | Generator<string>) {
     return (await collectGenAll(strGen)).join("");
 }
 
