@@ -10,7 +10,7 @@ import type {
     UXFileInfoStub,
     UXInternalFileInfoStub,
 } from "@lib/common/types";
-import { getDocDataAsArray, isDocContentSame, readAsBlob, readContent } from "@lib/common/utils";
+import { createBlob, getDocDataAsArray, isDocContentSame, isTextBlob, readAsBlob, readContent } from "@lib/common/utils";
 import { shouldBeIgnored, stripAllPrefixes } from "@lib/string_and_binary/path";
 import { Semaphore } from "octagonal-wheels/concurrency/semaphore";
 import { eventHub } from "@lib/hub/hub";
@@ -39,6 +39,20 @@ export interface ServiceFileHandlerDependencies {
     path: PathService;
     setting: SettingService;
     vault: VaultService;
+}
+
+async function isIncomingTextClearExtension(
+    incomingContent: string | string[] | Blob | ArrayBuffer,
+    localContent: string | string[] | Blob | ArrayBuffer
+): Promise<boolean> {
+    const incomingBlob = createBlob(incomingContent);
+    const localBlob = createBlob(localContent);
+    if (!isTextBlob(incomingBlob) || !isTextBlob(localBlob)) {
+        return false;
+    }
+    const incomingText = await incomingBlob.text();
+    const localText = await localBlob.text();
+    return incomingText.startsWith(localText) || incomingText.endsWith(localText);
 }
 
 export abstract class ServiceFileHandlerBase
@@ -355,7 +369,8 @@ export abstract class ServiceFileHandlerBase
             // Note: This checks only the mtime with the resolution reduced to 2 seconds.
             //       2 seconds it for the ZIP file's mtime. If not, we cannot backup the vault as the ZIP file.
             //       This is hardcoded on `compareMtime` of `src/common/utils.ts`.
-            if (this.path.compareFileFreshness(existDoc, docEntry) !== EVEN) {
+            const freshness = this.path.compareFileFreshness(existDoc, docEntry);
+            if (freshness !== EVEN) {
                 shouldApplied = true;
             }
             // 2. if not, the content should be checked.
@@ -405,6 +420,9 @@ export abstract class ServiceFileHandlerBase
     ): Promise<boolean> {
         const readFile = await this.readFileFromStub(existDoc);
         if (incomingContent && (await isDocContentSame(incomingContent, readFile.body))) {
+            return false;
+        }
+        if (incomingContent && (await isIncomingTextClearExtension(incomingContent, readFile.body))) {
             return false;
         }
         if (!incomingEntry._rev) {
